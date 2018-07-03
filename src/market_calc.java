@@ -55,29 +55,33 @@ int  amount_sell = 0;
 int icount = datalist.size();
 int amounts = 0;
 
-        for (Integer item : datalist) {
-            morecount = 0;
+        for (Integer item : datalist) { //перебираем все элементы
+            morecount = 0; //обнуляем количество следующих элементов больше текущего
             //System.out.println(item.toString());
             // Берем элемент
             // сравниваем со следующими
             // если есть больше
             // считаем сколько штук
-            for(int x = i;x<icount;x++){
-                if(item<datalist.get(x)){
-                    morecount++;
+            for(int x = i;x<icount;x++){ //перебераем все последующие элементы
+                if(datalist.get(x)>item){ //если элемент больше исследуемого
+                    morecount++; // увеличиваем счетчик количества следующих элементов больше текущего
                 }
             }
-            if(morecount>buy){
-                buy++;
-                amount_buy = amount_buy + item;
+            if(morecount>buy){ // если таких элементов больше чем уже куплено
+                buy++; // увеличиваем счетчик покупок
+                amount_buy = amount_buy + item; //прибавляем покупку
             }
             else{
                 if(item<datalist.get(icount-1)){
                     buy++;
                     amount_buy = amount_buy + item;
                 }else {
-                    buy--;
-                    amount_sell = amount_sell + item;
+                    if(buy>0) {
+                        buy--;
+                        amount_sell = amount_sell + item;
+                    }else{
+                        //ничего не делаем
+                    }
                 }
             }
             //
@@ -92,12 +96,14 @@ int amounts = 0;
             // если есть равно
             //ПРОПУСКАЕМ
             //
-
+i++;
         }
         System.out.println(amount_sell);
         System.out.println(amount_buy);
         System.out.println(datalist.get(icount-1));
         System.out.println(buy);
+        System.out.println(buy * datalist.get(icount-1));
+
         amounts = amount_sell - amount_buy + (buy * datalist.get(icount-1));
         System.out.println(amounts);
 
