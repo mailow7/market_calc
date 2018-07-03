@@ -9,13 +9,13 @@ public class market_calc {
 
     public static void main(String[] args) {
 
-        ArrayList<Integer> datalist = new ArrayList<Integer>();
+        ArrayList<Integer> datalist = new ArrayList();
 
         try
         {
             FileReader fr = new FileReader("c:\\temp\\WunderFund_data.csv");
             BufferedReader br = new BufferedReader(fr);
-            String stringRead = br.readLine();
+            String stringRead= br.readLine();
             stringRead = br.readLine();
 
             String index;
@@ -25,6 +25,7 @@ public class market_calc {
             {
                 StringTokenizer st = new StringTokenizer(stringRead, ",");
                 index = st.nextToken( );
+
 
                 try {
                     foo = Integer.parseInt(st.nextToken());
@@ -44,12 +45,9 @@ public class market_calc {
         catch(IOException ioe){
             System.out.println(ioe);
         }
-        //System.out.println("done");
-
-        //System.out.println(datalist.size());
 int i = 1;
 int buy = 0;
-int  morecount = 0;
+int  morecount;
 int  amount_buy = 0;
 int  amount_sell = 0;
 int icount = datalist.size();
@@ -57,7 +55,6 @@ int amounts = 0;
 
         for (Integer item : datalist) { //перебираем все элементы
             morecount = 0; //обнуляем количество следующих элементов больше текущего
-            //System.out.println(item.toString());
             // Берем элемент
             // сравниваем со следующими
             // если есть больше
@@ -79,8 +76,6 @@ int amounts = 0;
                     if(buy>0) {
                         buy--;
                         amount_sell = amount_sell + item;
-                    }else{
-                        //ничего не делаем
                     }
                 }
             }
