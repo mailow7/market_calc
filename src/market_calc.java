@@ -13,7 +13,7 @@ public class market_calc {
 
         try
         {
-            FileReader fr = new FileReader("c:\\temp\\WunderFund_data.csv");
+            FileReader fr = new FileReader("WunderFund_data.csv");
             BufferedReader br = new BufferedReader(fr);
             String stringRead= br.readLine();
             stringRead = br.readLine();
@@ -64,7 +64,13 @@ int amounts = 0;
                     morecount++; // увеличиваем счетчик количества следующих элементов больше текущего
                 }
             }
-            if(morecount>buy){ // если таких элементов больше чем уже куплено
+            if(morecount>=buy){ // если таких элементов больше чем уже куплено
+
+                //
+                // TODO: класть купленные цены в аррэй, сортировать по убыванию, первым продавать самый дорогой,
+                // удалять из аррэя,
+                // перед продажей проверять в аррэе
+
                 buy++; // увеличиваем счетчик покупок
                 amount_buy = amount_buy + item; //прибавляем покупку
             }
@@ -91,16 +97,18 @@ int amounts = 0;
             // если есть равно
             //ПРОПУСКАЕМ
             //
+        System.out.println(" price "+item +" abuy "+ amount_buy + " asell " + amount_sell + " morecount " + morecount + " buy " + buy + " i "+i);
 i++;
+
         }
-        System.out.println(amount_sell);
-        System.out.println(amount_buy);
-        System.out.println(datalist.get(icount-1));
-        System.out.println(buy);
-        System.out.println(buy * datalist.get(icount-1));
+        //System.out.println(amount_sell);
+        //System.out.println(amount_buy);
+        //System.out.println(datalist.get(icount-1));
+        //System.out.println(buy);
+        //System.out.println(buy * datalist.get(icount-1));
 
         amounts = amount_sell - amount_buy + (buy * datalist.get(icount-1));
-        System.out.println(amounts);
+        System.out.println("Ответ: " + amounts);
 
     }
 }
